@@ -1,0 +1,50 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/index.css" rel="stylesheet">
+    <title>Single Person</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <h2>Register Here</h2>
+            <ul>
+                <li><a href="/">Form</a></li>
+                <li><a href="/people">People</a></li>
+                <li><a href="/people/singleid">Search</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h2 style="display: flex;justify-content:center;text-shadow: 8px 8px 10px rgba(145, 156, 161, 1);">
+        This is a Case Sensitive search
+    </h2>
+    <form action="/people/singleid" method="get">
+    <div class="hehe"style="margin-top:40px ;">
+            <input type="text" class="searchbar"name="name" placeholder="search by name" >
+            <button type="submit" style="background-color: black; color:cornsilk;padding:7px;border-radius: 10px;">
+                <img src="/searchbut.svg" alt="search">
+            </button>
+        </div>
+    </form>
+    <br>
+    <table style="width:100%">
+        <tr style="background-color: black; color:cornsilk;">
+            <th style="padding:2.5px; width: 20%;" rowspan="1">Name</th>
+            <th style="padding:2.5px; width: 20%;" rowspan="1">Class</th>
+            <th style="padding:2.5px; width: 20%;" rowspan="1">Email</th>
+            <th style="padding:2.5px; width: 20%;" rowspan="1">Resident location</th>
+            <th style="padding:2.5px; width: 20%;" rowspan="1">Gender</th>
+          </tr>
+        <% persons.forEach(i=>{ %>
+        <tr>
+          <td><%= i.name %></td>
+          <td><%= i.class %></td>
+          <td><%= i.email %></td>
+          <td><%= i.address %></td>
+          <td><%= i.gender %></td>
+        </tr> 
+        <% }) %>
+    </table>
+</body>
+</html>
