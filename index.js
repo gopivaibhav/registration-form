@@ -8,7 +8,7 @@ const route=require('./routes/route')
 const login=require('./routes/login')
 const signin=require('./routes/signin')
 app.set('view engine','ejs')
-app.set('views',__dirname+'\\views')
+app.set('views',__dirname+'/views')
 app.use(express.static('media'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
