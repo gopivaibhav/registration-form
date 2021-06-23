@@ -80,7 +80,7 @@ nav ul{
     justify-content: space-around;
     width:250px;
     list-style-type: none;
-    margin-right: 10px;
+    margin-right: 40px;
 }
 a{
     text-decoration:none;
@@ -105,7 +105,16 @@ a:hover{
     justify-content: center;
     align-items: center;
 }
-
+.login{
+    background-color: black;
+    color: cornsilk;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+.login:hover{
+    background-color: darkgray;
+    color: black;
+}
 @media screen and (max-width:810px) {
     .hello{
         display: block;

@@ -8,9 +8,10 @@
 <body>
     <header>
         <nav>
-            <h2>Register Here</h2>
+            <h2>Tq for giving your info</h2>
             <ul>
-                <li><a href="/">Form</a></li>
+                <li><a href="/">Login</a></li>
+                <li><a href="/people/main">Home</a></li>
                 <li><a href="/people">People</a></li>
                 <li><a href="/people/singleid">Search</a></li>
             </ul>
@@ -31,18 +32,14 @@
     <table style="width:100%">
         <tr style="background-color: black; color:cornsilk;">
             <th style="padding:2.5px; width: 20%;" rowspan="1">Name</th>
-            <th style="padding:2.5px; width: 20%;" rowspan="1">Class</th>
-            <th style="padding:2.5px; width: 20%;" rowspan="1">Email</th>
+            <th style="padding:2.5px; width: 20%;" rowspan="1">Date of Birth</th>
             <th style="padding:2.5px; width: 20%;" rowspan="1">Resident location</th>
-            <th style="padding:2.5px; width: 20%;" rowspan="1">Gender</th>
           </tr>
         <% persons.forEach(i=>{ %>
         <tr>
           <td><%= i.name %></td>
-          <td><%= i.class %></td>
-          <td><%= i.email %></td>
-          <td><%= i.address %></td>
-          <td><%= i.gender %></td>
+          <td><%= i.dob %></td>
+          <td><%= i.location %></td>
         </tr> 
         <% }) %>
     </table>

@@ -1,4 +1,3 @@
-const { query } = require('express');
 const express=require('express')
 const model =require('../models/model')
 
@@ -15,25 +14,8 @@ route.get('',async(req,res)=>{
     }
 });
 
-route.post('/submitted',(req,res)=>{
-    const person=new model({
-        name:req.body.name,
-        class:req.body.class,
-        gender:req.body.gender,
-        address:req.body.address,
-        email:req.body.email
-    })
-
-    person.save()
-    .then(result=>{
-        res.status(200).redirect('/')
-    })
-    .catch(err=>{
-        res.status(500).json({
-            error:err
-        })
-    })
-    
+route.get('/main',(req,res)=>{
+    res.render('main')
 });
 
 route.get('/singleid',async(req,res)=>{

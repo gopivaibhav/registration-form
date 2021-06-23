@@ -7,7 +7,8 @@ const port=process.env.PORT || 5000
 const bodyParser=require('body-parser')
 const app =express()
 const route=require('./routes/route')
-
+const login=require('./routes/login')
+const signin=require('./routes/signin')
 app.set('view engine','ejs')
 app.set('views',__dirname+'\\views')
 app.use(express.static('media'))
@@ -21,8 +22,8 @@ mdb.on('open',()=>{
 });
 
 app.use('/people',route)
-app.get('',(req,res)=>{
-   res.render('index')
-});
+app.use('',login)
+app.use('/signin',signin)
+
 
 app.listen(port);
