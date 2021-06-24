@@ -9,31 +9,60 @@
 </head>
 <body>
     <header>
-        <nav>
-            <h2>Tq for giving your info</h2>
-            <ul>
-                <li><a href="/">Login</a></li>
-                <li><a href="/people/main">Home</a></li>
-                <li><a href="/people">People</a></li>
-                <li><a href="/people/singleid">Search</a></li>
-            </ul>
+        <nav class="navbar">
+            <div class="brand-title">Stay Fit</div>
+            <a href="#" class="toggle-button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="/">Login</a></li>
+                    <li><a href="/people/main">Home</a></li>
+                    <li><a href="/people">People</a></li>
+                    <li><a href="/people/singleid">Search</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
-    <h1 style="display: flex;justify-content:center;text-shadow: 8px 8px 10px rgba(255, 248, 220, 1);margin-bottom:40px">People Registered here:</h1><hr>
-    <table style="width:100%">
-        <tr style="background-color: black; color:cornsilk;">
-          <th style="padding:2.5px; width: 20%;" rowspan="1">Name</th>
-          <th style="padding:2.5px; width: 20%;" rowspan="1">Date of Birth</th>
-          <th style="padding:2.5px; width: 20%;" rowspan="1">Resident location</th>
-        </tr>
-        
-        <% persons.forEach(i=>{ %>
-        <tr>
-          <td><%= i.name %></td>
-          <td><%= i.dob %></td>
-          <td><%= i.location %></td>
-        </tr> 
-        <% }) %>
-    </table>
+    <script>
+
+        const toggleButton = document.getElementsByClassName('toggle-button')[0]
+        const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+
+        toggleButton.addEventListener('click', () => {
+            navbarLinks.classList.toggle('active')
+        })
+
+    </script>
+    <div style="margin-left: 20px;margin-right: 20px;">
+        <h1
+            style="display: flex;justify-content:center;text-shadow: 8px 8px 10px rgba(255, 248, 220, 1);margin-bottom:40px">
+            People Registered here:</h1>
+        <hr>
+        <table style="width:100%">
+            <tr style="background-color: black; color:cornsilk;">
+                <th style="padding:2.5px; width: 20%;" rowspan="1">Name</th>
+                <th style="padding:2.5px; width: 20%;" rowspan="1">Date of Birth</th>
+                <th style="padding:2.5px; width: 20%;" rowspan="1">Resident location</th>
+            </tr>
+    
+            <% persons.forEach(i=>{ %>
+                <tr>
+                    <td>
+                        <%= i.name %>
+                    </td>
+                    <td>
+                        <%= i.dob %>
+                    </td>
+                    <td>
+                        <%= i.location %>
+                    </td>
+                </tr>
+                <% }) %>
+        </table>
+    </div>
+    
 </body>
 </html>
