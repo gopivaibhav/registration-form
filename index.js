@@ -4,7 +4,6 @@ const mongoose=require('mongoose')
 const port=process.env.PORT || 5000
 const bodyParser=require('body-parser')
 const app =express()
-const route=require('./routes/route')
 const login=require('./routes/login')
 const signin=require('./routes/signin')
 app.set('view engine','ejs')
@@ -19,9 +18,8 @@ mdb.on('open',()=>{
     console.log("new DB is connected now...")
 });
 
-app.use('/people',route)
 app.use('',login)
 app.use('/signin',signin)
 
 
-app.listen(port);
+app.listen(port,()=>{console.log(`listening on ${port}`)});
