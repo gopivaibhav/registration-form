@@ -4,8 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>payment_form</title>
+    <title>Main</title>
     <link href="/css/index.css" rel="stylesheet">
+    <style>
+        .images {
+            width: 200px;
+            height: 300px;
+        }
+
+        .images:hover {
+            transform: scale(1.05);
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        p {
+            font-family: sans-serif;
+        }
+
+        p:hover {
+            color: #006dc7;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 33.3% 33.3% 33.3%;
+            background-color: #2196F3;
+            padding: 10px;
+        }
+
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -35,28 +72,45 @@
         toggleButton.addEventListener('click', () => {
             navbarLinks.classList.toggle('active')
         })
-
-    </script>
-    <div style="margin-left: 20px;margin-right: 20px;">
-        <div style="display: flex;">
-            <h1>Our Website contain Nothing</h1>
-            <img src="/sad.svg" style="width:35px"alt="sad">
-        </div>
-        <div style="display: flex;">
-            <h4>But Thanks for giving your information. I am going to misuse it </h4>
-            <img src="/cruel.svg" style="margin-left:5px;width:35px"alt="cunning">
-        </div>
         
-        <h5>Just Kidding :)</h5>
-        <hr>
-        <div>
-            <h4>You can check details of all people registered in my website in "People" section or you can search for them in "Search" section</h4>
-        </div>
-        <div>
-            <h5>I just revealed their Birthday and location but not their mail Ids and passwords</h5>
-        </div>
+    </script>
+    <div class="bar">
+        <form action="/main" method="get">
+            <div class="hehe" style="margin:40px ;">
+                <label for="movie" name="movie"></label>
+                <input type="text" id="movie" placeholder="Enter Movie name" name="movie" class="searchbar">
+                <button type="submit" style="background-color: black; color:cornsilk;padding:7px;border-radius: 10px;">
+                    <img src="/searchbut.svg" alt="search">
+                </button>
+            </div>
+        </form>
     </div>
-    
+    <div class="grid-container">
+        <% array.forEach(i=>{ %>
+            <div class="grid-item">
+                <% if (i.i){ %>
+                    <img class="images" src="<%= i.i.imageUrl %>" alt="movie">
+                    <% } %>
+                        <h1>
+                            <%= i.l %>
+                        </h1>
+                        <% if (i.y){ %>
+                            <p>Year of release: <%=i.y %>
+                            </p>
+                            <% } %>
+                                <% if (i.s){ %>
+                                    <p>Cast of film: <%=i.s %>
+                                    </p>
+                                    <% } %>
+                                        <% if (i.q){ %>
+                                            <p>Type: <%=i.q %>
+                                            </p>
+                                            <% } %>
+
+            </div>
+            <% }) %>
+    </div>
+
 </body>
 
 </html>
