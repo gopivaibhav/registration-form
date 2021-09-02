@@ -11,7 +11,7 @@ let check=new Login
 
 route.get('', (req, res) => {
     check.status = 0;
-    res.render('login')
+    res.render('enter')
 })
 
 route.post('', async (req, res) => {
@@ -23,6 +23,9 @@ route.post('', async (req, res) => {
     };
     try {
         const mailObj = await model.find(mailOpt);
+        if(mailObj.length===0){
+            res.render('enter',{msg:"No User found",email:mailOpt.email})
+        }else{
         const passObj = await model.find(pasOpt);
         if (String(passObj[0]._id) === String(mailObj[0]._id)) {
             check.status = 1;
@@ -30,11 +33,12 @@ route.post('', async (req, res) => {
                 person: mailObj[0]
             })
         } else {
-            res.send("Invalid login")
+            res.render('enter',{msg:"Wrong Password",email:mailOpt.email})
         }
     }
+    }
     catch {
-        res.send("Wrong Credentials")
+        res.render('enter',{msg:"Wrong Password",email:mailOpt.email})
     }
 });
 
@@ -62,7 +66,7 @@ route.get('/main', async (request, res) => {
             res.render('main',{array:[],inp: ''})
         }
     } else {
-        res.send("You are logged out")
+        res.render('loggedout')
     }
 });
 
@@ -74,7 +78,7 @@ route.get('/people', async (req, res) => {
                 persons: mod
             })
         } else {
-            res.send("You are logged out")
+            res.render('loggedout')
         }
 
     } catch {
@@ -98,7 +102,7 @@ route.get('/people/singleid', async (req, res) => {
                 inp:req.query.name
             })
         } else {
-            res.send("You are logged out")
+            res.render('loggedout')
         }
 
     } catch {

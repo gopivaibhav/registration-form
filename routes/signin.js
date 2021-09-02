@@ -8,7 +8,9 @@ route.get('',(req,res)=>{
 });
 
 
-route.post('',(req,res)=>{
+route.post('',async(req,res)=>{
+    const obj=await model.find({email:req.body.email})
+    if(obj.length===0){
     const person=new model({
         name:req.body.name,
         email:req.body.email,
@@ -25,7 +27,9 @@ route.post('',(req,res)=>{
             error:err
         })
     })
-            
+    }else{
+        res.render('enter',{msg:"User already exists"})
+    }     
 });
 
 module.exports=route
