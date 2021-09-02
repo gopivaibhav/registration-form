@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>payment_form</title>
+    <title>Welcome</title>
     <link href="/css/index.css" rel="stylesheet">
 </head>
 
@@ -17,10 +17,10 @@
           </span>
           <div class="navbar-links">
             <ul class="main-nav" id="js-menu">
-              <li><a class="nav-links" href="/">Logout</a></li>
               <li><a class="nav-links" href="/main">Home</a></li>
               <li><a class="nav-links" href="/people">People</a></li>
               <li><a class="nav-links" href="/people/singleid">Search</a></li>
+              <li><a class="nav-links" href="/">Logout</a></li>
             </ul>
           </div>
         </nav>
@@ -33,11 +33,11 @@
           mainNav.classList.toggle("active");
         });
       </script>
-    <div style="margin-left: 20px;margin-right: 20px;">
-        <h1>
+    <div style="margin-left: 20px;margin-right: 20px;margin-top: 30px;">
+        <h1 style="margin-left: 20px;margin-top: 30px;">
             Welcome <%= person.name%>,
         </h1>
-        <h4>
+        <h4 style="margin-left: 20px;margin-top: 30px;text-align:center;">
             <%= person.location%> is really lucky to have you in it...
         </h4>
         <script
@@ -46,9 +46,10 @@
     ></script>
         </body>
         <footer>
-            <div style="display: flex;">
-                <h3>This is Gopi Vaibhav who took your information</h3><img src="/cruel.svg"
-                    style="margin-left:5px;width:35px" alt="cruel">
+            <div style="margin-left: 20px;margin-top: 30px;">
+                <h3>This is Gopi Vaibhav who has your information</h3>
+                
+                <img src="/cruel.svg" style="width:35px;text-align:center;margin-top: 5px;" alt="cruel" >
             </div>
         </footer>
     </div>

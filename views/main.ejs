@@ -41,6 +41,29 @@
         font-size: 20px;
         text-align: center;
       }
+
+      @media screen and (max-width:700px){
+          .grid-container {
+            display: block;
+          }
+          .names{
+              font-size: 25px;
+          }
+      }
+      @media screen and (max-width:300px){
+        .grid-container {
+          display: block;
+        }
+        .names{
+            font-size: 20px;
+        }
+        
+        .images{
+            width: 100px;
+            height: 150px;
+        }
+    }
+
     </style>
   </head>
 
@@ -52,12 +75,12 @@
           <i class="fas fa-bars"></i>
         </span>
         <div class="navbar-links">
-          <ul class="main-nav" id="js-menu">
-            <li><a class="nav-links" href="/">Logout</a></li>
-            <li><a class="nav-links" href="/main">Home</a></li>
-            <li><a class="nav-links" href="/people">People</a></li>
-            <li><a class="nav-links" href="/people/singleid">Search</a></li>
-          </ul>
+            <ul class="main-nav" id="js-menu">
+                <li><a class="nav-links" href="/main">Home</a></li>
+                <li><a class="nav-links" href="/people">People</a></li>
+                <li><a class="nav-links" href="/people/singleid">Search</a></li>
+                <li><a class="nav-links" href="/">Logout</a></li>
+              </ul>
         </div>
       </nav>
     </header>
@@ -79,6 +102,7 @@
             placeholder="Enter Movie name"
             name="movie"
             class="searchbar"
+            value="<%= inp %>"
           />
           <button
             type="submit"
@@ -99,7 +123,7 @@
         <% if (i.i){ %>
         <img class="images" src="<%= i.i.imageUrl %>" alt="movie" />
         <% } %>
-        <h1><%= i.l %></h1>
+        <h1 class="names"><%= i.l %></h1>
         <% if (i.y){ %>
         <p>Year of release: <%=i.y %></p>
         <% } %> <% if (i.s){ %>

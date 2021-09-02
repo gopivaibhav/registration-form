@@ -56,10 +56,10 @@ route.get('/main', async (request, res) => {
                 if (response.error) throw new Error(response.error);
 
                 filmArray = response.body.d
-                res.render('main', { array: filmArray })
+                res.render('main', { array: filmArray , inp: request.query.movie})
             });
         }else{
-            res.render('main',{array:[]})
+            res.render('main',{array:[],inp: ''})
         }
     } else {
         res.send("You are logged out")
@@ -94,7 +94,8 @@ route.get('/people/singleid', async (req, res) => {
         if (check.status == 1) {
             const mod = await model.find(options)
             res.render('single', {
-                persons: mod
+                persons: mod,
+                inp:req.query.name
             })
         } else {
             res.send("You are logged out")
