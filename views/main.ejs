@@ -1,116 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main</title>
-    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet" />
     <style>
-        .images {
-            width: 200px;
-            height: 300px;
-        }
+      .images {
+        width: 200px;
+        height: 300px;
+      }
 
-        .images:hover {
-            transform: scale(1.05);
-        }
+      .images:hover {
+        transform: scale(1.01);
+      }
 
-        body {
-            margin: 0px;
-        }
+      body {
+        margin: 0px;
+      }
 
-        p {
-            font-family: sans-serif;
-        }
+      p {
+        font-family: sans-serif;
+      }
 
-        p:hover {
-            color: #006dc7;
-        }
+      p:hover {
+        color: #006dc7;
+      }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: 33.3% 33.3% 33.3%;
-            background-color: #2196F3;
-            padding: 10px;
-        }
+      .grid-container {
+        display: grid;
+        grid-template-columns: 33.3% 33.3% 33.3%;
+        background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf   100%);
+        padding: 10px;
+      }
 
-        .grid-item {
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.8);
-            padding: 10px;
-            font-size: 20px;
-            text-align: center;
-        }
+      .grid-item {
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(0, 0, 0, 0.8);
+        padding: 10px;
+        font-size: 20px;
+        text-align: center;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav class="navbar">
-            <div class="brand-title">Welcome</div>
-            <a href="#" class="toggle-button">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </a>
-            <div class="navbar-links">
-                <ul>
-                    <li><a href="/">Logout</a></li>
-                    <li><a href="/main">Home</a></li>
-                    <li><a href="/people">People</a></li>
-                    <li><a href="/people/singleid">Search</a></li>
-                </ul>
-            </div>
-        </nav>
+      <nav class="navbar">
+        <div class="brand-title logo">Welcome</div>
+        <span class="navbar-toggle" id="js-navbar-toggle">
+          <i class="fas fa-bars"></i>
+        </span>
+        <div class="navbar-links">
+          <ul class="main-nav" id="js-menu">
+            <li><a class="nav-links" href="/">Logout</a></li>
+            <li><a class="nav-links" href="/main">Home</a></li>
+            <li><a class="nav-links" href="/people">People</a></li>
+            <li><a class="nav-links" href="/people/singleid">Search</a></li>
+          </ul>
+        </div>
+      </nav>
     </header>
     <script>
+      let mainNav = document.getElementById("js-menu");
+      let navBarToggle = document.getElementById("js-navbar-toggle");
 
-        const toggleButton = document.getElementsByClassName('toggle-button')[0]
-        const navbarLinks = document.getElementsByClassName('navbar-links')[0]
-
-        toggleButton.addEventListener('click', () => {
-            navbarLinks.classList.toggle('active')
-        })
-        
+      navBarToggle.addEventListener("click", function () {
+        mainNav.classList.toggle("active");
+      });
     </script>
     <div class="bar">
-        <form action="/main" method="get">
-            <div class="hehe" style="margin:40px ;">
-                <label for="movie" name="movie"></label>
-                <input type="text" id="movie" placeholder="Enter Movie name" name="movie" class="searchbar">
-                <button type="submit" style="background-color: black; color:cornsilk;padding:7px;border-radius: 10px;">
-                    <img src="/searchbut.svg" alt="search">
-                </button>
-            </div>
-        </form>
+      <form action="/main" method="get">
+        <div class="hehe" style="margin: 40px">
+          <label for="movie" name="movie"></label>
+          <input style="text-align: center;"
+            type="text"
+            id="movie"
+            placeholder="Enter Movie name"
+            name="movie"
+            class="searchbar"
+          />
+          <button
+            type="submit"
+            style="
+            background-color: #B26FCC; color:white;
+              padding: 7px;
+              border-radius: 10px;
+            "
+          >
+            <img src="/searchbut.svg" alt="search" />
+          </button>
+        </div>
+      </form>
     </div>
     <div class="grid-container">
-        <% array.forEach(i=>{ %>
-            <div class="grid-item">
-                <% if (i.i){ %>
-                    <img class="images" src="<%= i.i.imageUrl %>" alt="movie">
-                    <% } %>
-                        <h1>
-                            <%= i.l %>
-                        </h1>
-                        <% if (i.y){ %>
-                            <p>Year of release: <%=i.y %>
-                            </p>
-                            <% } %>
-                                <% if (i.s){ %>
-                                    <p>Cast of film: <%=i.s %>
-                                    </p>
-                                    <% } %>
-                                        <% if (i.q){ %>
-                                            <p>Type: <%=i.q %>
-                                            </p>
-                                            <% } %>
-
-            </div>
-            <% }) %>
+      <% array.forEach(i=>{ %>
+      <div class="grid-item">
+        <% if (i.i){ %>
+        <img class="images" src="<%= i.i.imageUrl %>" alt="movie" />
+        <% } %>
+        <h1><%= i.l %></h1>
+        <% if (i.y){ %>
+        <p>Year of release: <%=i.y %></p>
+        <% } %> <% if (i.s){ %>
+        <p>Cast of film: <%=i.s %></p>
+        <% } %> <% if (i.q){ %>
+        <p>Type: <%=i.q %></p>
+        <% } %>
+      </div>
+      <% }) %>
     </div>
-
-</body>
-
+    <script
+      src="https://kit.fontawesome.com/a07e4b20fd.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

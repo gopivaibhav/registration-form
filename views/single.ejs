@@ -8,47 +8,44 @@
 <body>
     <header>
         <nav class="navbar">
-            <div class="brand-title">Welcome</div>
-            <a href="#" class="toggle-button">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </a>
-            <div class="navbar-links">
-                <ul>
-                    <li><a href="/">Logout</a></li>
-                    <li><a href="/main">Home</a></li>
-                    <li><a href="/people">People</a></li>
-                    <li><a href="/people/singleid">Search</a></li>
-                </ul>
-            </div>
+          <div class="brand-title logo">Welcome</div>
+          <span class="navbar-toggle" id="js-navbar-toggle">
+            <i class="fas fa-bars"></i>
+          </span>
+          <div class="navbar-links">
+            <ul class="main-nav" id="js-menu">
+              <li><a class="nav-links" href="/">Logout</a></li>
+              <li><a class="nav-links" href="/main">Home</a></li>
+              <li><a class="nav-links" href="/people">People</a></li>
+              <li><a class="nav-links" href="/people/singleid">Search</a></li>
+            </ul>
+          </div>
         </nav>
-    </header>
-    <script>
-
-        const toggleButton = document.getElementsByClassName('toggle-button')[0]
-        const navbarLinks = document.getElementsByClassName('navbar-links')[0]
-
-        toggleButton.addEventListener('click', () => {
-            navbarLinks.classList.toggle('active')
-        })
-
-    </script>
-    <div style="margin-left: 20px;margin-right: 20px;">
-        <h2 style="display: flex;justify-content:center;text-shadow: 8px 8px 10px rgba(145, 156, 161, 1);">
-            This is a Case Sensitive search
-        </h2>
+      </header>
+      <script>
+        let mainNav = document.getElementById("js-menu");
+        let navBarToggle = document.getElementById("js-navbar-toggle");
+  
+        navBarToggle.addEventListener("click", function () {
+          mainNav.classList.toggle("active");
+        });
+      </script>
+    <div style="margin-left: 20px;margin-right: 20px;margin-top: 30px;">
+        <h1
+            style="margin-top: 30px;color:#5F73BA;display: flex;justify-content:center;text-shadow: 8px 8px 10px rgba(255, 248, 220, 1);margin-bottom:40px">
+            This is a Case Sensitive search</h1>
+        
         <form action="/people/singleid" method="get">
         <div class="hehe"style="margin-top:40px ;">
-                <input type="text" class="searchbar"name="name" placeholder="search by name" >
-                <button type="submit" style="background-color: black; color:cornsilk;padding:7px;border-radius: 10px;">
+                <input type="text" class="searchbar"name="name" style="text-align: center;" placeholder="Search by name" >
+                <button type="submit" style="background-color: #B26FCC; color:white;padding:7px;border-radius: 10px;">
                     <img src="/searchbut.svg" alt="search">
                 </button>
             </div>
         </form>
         <br>
         <table style="width:100%">
-            <tr style="background-color: black; color:cornsilk;">
+            <tr style="background-color: #BE6ECE; color:white;">
                 <th style="padding:2.5px; width: 20%;" rowspan="1">Name</th>
                 <th style="padding:2.5px; width: 20%;" rowspan="1">Date of Birth</th>
                 <th style="padding:2.5px; width: 20%;" rowspan="1">Resident location</th>
@@ -62,5 +59,9 @@
             <% }) %>
         </table>
     </div>
+    <script
+      src="https://kit.fontawesome.com/a07e4b20fd.js"
+      crossorigin="anonymous"
+    ></script>
 </body>
 </html>

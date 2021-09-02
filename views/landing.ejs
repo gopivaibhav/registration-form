@@ -11,32 +11,28 @@
 <body>
     <header>
         <nav class="navbar">
-            <div class="brand-title">Welcome</div>
-            <a href="#" class="toggle-button">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </a>
-            <div class="navbar-links">
-                <ul>
-                    <li><a href="/">Logout</a></li>
-                    <li><a href="/main">Home</a></li>
-                    <li><a href="/people">People</a></li>
-                    <li><a href="/people/singleid">Search</a></li>
-                </ul>
-            </div>
+          <div class="brand-title logo">Welcome</div>
+          <span class="navbar-toggle" id="js-navbar-toggle">
+            <i class="fas fa-bars"></i>
+          </span>
+          <div class="navbar-links">
+            <ul class="main-nav" id="js-menu">
+              <li><a class="nav-links" href="/">Logout</a></li>
+              <li><a class="nav-links" href="/main">Home</a></li>
+              <li><a class="nav-links" href="/people">People</a></li>
+              <li><a class="nav-links" href="/people/singleid">Search</a></li>
+            </ul>
+          </div>
         </nav>
-    </header>
-    <script>
-
-        const toggleButton = document.getElementsByClassName('toggle-button')[0]
-        const navbarLinks = document.getElementsByClassName('navbar-links')[0]
-
-        toggleButton.addEventListener('click', () => {
-            navbarLinks.classList.toggle('active')
-        })
-
-    </script>
+      </header>
+      <script>
+        let mainNav = document.getElementById("js-menu");
+        let navBarToggle = document.getElementById("js-navbar-toggle");
+  
+        navBarToggle.addEventListener("click", function () {
+          mainNav.classList.toggle("active");
+        });
+      </script>
     <div style="margin-left: 20px;margin-right: 20px;">
         <h1>
             Welcome <%= person.name%>,
@@ -44,6 +40,10 @@
         <h4>
             <%= person.location%> is really lucky to have you in it...
         </h4>
+        <script
+      src="https://kit.fontawesome.com/a07e4b20fd.js"
+      crossorigin="anonymous"
+    ></script>
         </body>
         <footer>
             <div style="display: flex;">
