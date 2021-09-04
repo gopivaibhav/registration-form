@@ -249,3 +249,34 @@ footer a {
 button:hover{
 	cursor: pointer;
 }
+
+
+@media screen and (max-width:600px) {
+	form{
+		padding: 0 15px;
+	}
+	input{
+		font-size: 12px;
+	}
+	form p,span{
+		padding: 0 15px;
+		font-size: 10px;
+	}
+	*{
+		font-size: 15px;
+	}
+	.overlay-panel{
+		padding: 0 15px;
+	}
+}
+@media screen and (max-width:400px) {
+	input{
+		font-size: 11px;
+	}
+}
+@media screen and (max-width:360px) {
+	button{
+		padding: 10px 35px;
+	}
+	
+}
