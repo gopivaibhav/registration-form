@@ -4,21 +4,24 @@ const mongoose=require('mongoose')
 const port=process.env.PORT || 5000
 const bodyParser=require('body-parser')
 const app =express()
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+
+app.use(cookieParser());
+app.use(session({ secret: process.env.SESSION_SECRET, saveUninitialized: true, resave: true }));
 const login=require('./routes/login')
 const signin=require('./routes/signin')
 app.set('view engine','ejs')
 app.set('views',__dirname+'/views')
 app.use(express.static('media'))
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-mongoose.connect(process.env.DATABASE_URL,{ useNewUrlParser: true,useUnifiedTopology: true })
-const mdb=mongoose.connection
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+mongoose.connect(process.env.DATABASE_URL,{ useNewUrlParser: true,useUnifiedTopology: true }).then(res=>{
+    console.log(`DB connected`)
+})
 
-mdb.on('open',()=>{
-    console.log("new DB is connected now...")
-});
 
-app.use('',login)
+app.use('/',login)
 app.use('/signin',signin)
 
 

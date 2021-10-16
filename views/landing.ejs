@@ -6,6 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link href="/css/index.css" rel="stylesheet">
+    <style>
+      .profile{
+        display: flex;
+        justify-content: space-between;
+      }
+      h1 span,h4 span{
+        color: rgba(161, 59, 161, 0.8);
+      }
+      img{
+          border-radius: 150px;
+          margin-right: 50px;
+      }
+      h4{
+        font-family: sans-serif;
+        font-size: 1.2rem;
+      }
+      @media only screen and (max-width: 350px) {
+        .profile h1{
+          font-size: 1.5rem;
+        }
+        
+      }
+    </style>
 </head>
 
 <body>
@@ -20,6 +43,7 @@
               <li><a class="nav-links" href="/main">Home</a></li>
               <li><a class="nav-links" href="/people">People</a></li>
               <li><a class="nav-links" href="/people/singleid">Search</a></li>
+              <li><a class="nav-links" href="/profile">Profile</a></li>
               <li><a class="nav-links" href="/">Logout</a></li>
             </ul>
           </div>
@@ -34,22 +58,27 @@
         });
       </script>
     <div style="margin-left: 20px;margin-right: 20px;margin-top: 30px;">
+      <div class="profile">
         <h1 style="margin-left: 20px;margin-top: 30px;">
-            Welcome <%= person.name%>,
+            Welcome <span><%= person.name%></span>
         </h1>
-        <h4 style="margin-left: 20px;margin-top: 30px;text-align:center;">
-            <%= person.location%> is really lucky to have you in it...
+        <img src="https://i.pravatar.cc/150?u=<%= person.location%>" alt="profile pic">
+      </div>
+        <h4 style="margin-left: 20px;margin-top: 30px;">
+          I don't know whether you look like this picture or not but this suits you and
+            <span><%= person.location%></span> is really lucky to have you in it...
         </h4>
+    </div>
         <script
       src="https://kit.fontawesome.com/a07e4b20fd.js"
       crossorigin="anonymous"
     ></script>
         </body>
         <footer>
-            <div style="margin-left: 20px;margin-top: 30px;">
+            <div style="margin-left: 20px;margin-top: 30px;display:flex;justify-content:space-between">
                 <h3>This is Gopi Vaibhav who has your information</h3>
                 
-                <img src="/cruel.svg" style="width:35px;text-align:center;margin-top: 5px;" alt="cruel" >
+                <img src="/cruel.svg" style="width:35px;margin-top: 5px;" alt="cruel" >
             </div>
         </footer>
     </div>

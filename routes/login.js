@@ -2,19 +2,14 @@ const express = require('express')
 const model = require('../models/model')
 var unirest = require("unirest");
 const route = express.Router()
+const session = require("express-session");
 
-class Login{
-    status=0
-}
-
-let check=new Login
-
-route.get('', (req, res) => {
-    check.status = 0;
+route.get('/', (req, res) => {
+    req.session.isAuth=false
     res.render('enter')
 })
 
-route.post('', async (req, res) => {
+route.post('/', async (req, res) => {
     let mailOpt = {
         email: req.body.email
     };
@@ -28,10 +23,9 @@ route.post('', async (req, res) => {
         }else{
         const passObj = await model.find(pasOpt);
         if (String(passObj[0]._id) === String(mailObj[0]._id)) {
-            check.status = 1;
-            res.render('landing', {
-                person: mailObj[0]
-            })
+            req.session.isAuth=true
+            req.session.user=mailObj[0]
+            res.redirect('/main')
         } else {
             res.render('enter',{msg:"Wrong Password",email:mailOpt.email})
         }
@@ -43,7 +37,7 @@ route.post('', async (req, res) => {
 });
 
 route.get('/main', async (request, res) => {
-    if (check.status == 1) {
+    if (request.session.isAuth) {
         if (request.query.movie) {
             req = unirest("GET", "https://imdb8.p.rapidapi.com/auto-complete");
             req.query({
@@ -69,11 +63,17 @@ route.get('/main', async (request, res) => {
         res.render('loggedout')
     }
 });
-
+route.get('/profile',(req,res)=>{
+    if(req.session.isAuth){
+        res.render('landing',{person:req.session.user})
+    }else{
+        res.render('loggedout')
+    }
+})
 route.get('/people', async (req, res) => {
     try {
-        const mod = await model.find()
-        if (check.status == 1) {
+        if (req.session.isAuth) {
+            const mod = await model.find()
             res.render('people', {
                 persons: mod
             })
@@ -95,7 +95,7 @@ route.get('/people/singleid', async (req, res) => {
         }
     }
     try {
-        if (check.status == 1) {
+        if (req.session.isAuth) {
             const mod = await model.find(options)
             res.render('single', {
                 persons: mod,
