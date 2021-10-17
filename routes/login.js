@@ -6,6 +6,9 @@ const session = require("express-session");
 
 route.get('/', (req, res) => {
     req.session.isAuth=false
+    if(req.session.user){
+        req.session.destroy()
+    }
     res.render('enter')
 })
 
@@ -74,8 +77,10 @@ route.get('/people', async (req, res) => {
     try {
         if (req.session.isAuth) {
             const mod = await model.find()
+            const user=await model.find({_id:req.session.user._id})
             res.render('people', {
-                persons: mod
+                persons: mod,
+                user:user[0]
             })
         } else {
             res.render('loggedout')
@@ -86,6 +91,35 @@ route.get('/people', async (req, res) => {
     }
 });
 
+route.post('/follow',async(req,res)=>{
+    try{
+        let obj=await model.find({_id:req.session.user._id})
+        obj[0].following.push(req.body.frnd)
+        const mod=await obj[0].save()
+        console.log(mod);
+        const all = await model.find()
+        res.redirect('/people')
+    }catch(e){
+        console.log(e);
+        res.redirect('/people')
+    }
+})
+
+route.post('/unfollow',async(req,res)=>{
+    try{
+        let obj=await model.find({_id:req.session.user._id})
+        obj[0].following=obj[0].following.filter(check=>{
+            return check!==req.body.frnd
+        })
+        console.log(obj[0]);
+        const mod=await obj[0].save()
+        const all = await model.find()
+        res.redirect('/people')
+    }catch(e){
+        console.log(e);
+        res.redirect('/people')
+    }
+})
 
 route.get('/people/singleid', async (req, res) => {
     let options = { name: null }

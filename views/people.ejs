@@ -43,22 +43,43 @@
         <table style="width:100%">
             <tr style="background-color: #BE6ECE; color:white;">
                 <th style="padding:2.5px; width: 20%;" rowspan="1">Name</th>
-                <th style="padding:2.5px; width: 20%;" rowspan="1">Date of Birth</th>
+                <th style="padding:2.5px; width: 20%;" rowspan="1">Follow</th>
                 <th style="padding:2.5px; width: 20%;" rowspan="1">Resident location</th>
             </tr>
     
+            <%# console.log('|||||||||',user.following) %> 
             <% persons.forEach(i=>{ %>
+              <% if(user.following.includes(String(i._id))){ %>
                 <tr>
                     <td>
                         <%= i.name %>
                     </td>
                     <td>
-                        <%= i.dob %>
+                        <form action="/unfollow" method="post">
+                          <input type="hidden" value="<%= i._id %>" name="frnd">
+                          <input class="follow-btn" type="submit" value="UnFollow">
+                        </form>
                     </td>
                     <td>
                         <%= i.location %>
                     </td>
                 </tr>
+              <% }else{ %>
+                <tr>
+                    <td>
+                        <%= i.name %>
+                    </td>
+                    <td>
+                        <form action="/follow" method="post">
+                          <input type="hidden" value="<%= i._id %>" name="frnd">
+                          <input class="follow-btn" type="submit" value="Follow">
+                        </form>
+                    </td>
+                    <td>
+                        <%= i.location %>
+                    </td>
+                </tr>
+              <% } %> 
                 <% }) %>
         </table>
     </div>

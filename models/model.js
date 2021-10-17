@@ -20,7 +20,10 @@ const Schema=mongoose.Schema({
     dob:{
         type: String,
         required:true
-    }
+    },
+    following:[
+        { type: String}
+    ]
 })
 
 

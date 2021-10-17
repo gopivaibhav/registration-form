@@ -58,6 +58,18 @@ body {
     color: rgba(255,255,255,0.8);
     font-size: 24px;
 }
+.follow-btn{
+    border: 0px;
+    background-color: white;
+    color: black;
+}
+.follow-btn:hover{
+    color: #c16ecf;
+}
+
+td{
+    padding: 5px;
+}
 
 input{
     font-size: 15px;
